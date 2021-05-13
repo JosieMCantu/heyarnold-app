@@ -16,5 +16,8 @@ describe('hey arnold container', () => {
         const input = await screen.findByLabelText('Cartoon Name');
         userEvent.type(input, 'Mitzi');
 
+        const button = await screen.findByRole('button', {name: 'search'});
+        userEvent.click(button);
+
     });
 });
