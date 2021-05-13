@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import CartoonList from '../components/cartoons/CartoonList';
+import Controls from '../components/cartoons/Controls';
 import { findAllCartoons } from '../services/heyArnoldApi.js';
 
 export default class HeyArnoldContainer extends Component {
     state = {
         loading: true,
-        cartoons: []
+        cartoons: [],
+        cartoonName: ''
     }
 
     async componentDidMount() {
@@ -17,11 +19,12 @@ export default class HeyArnoldContainer extends Component {
         });
     }
     render() {
-        const { loading, cartoons } = this.state;
+        const { loading, cartoons, cartoonName } = this.state;
 
         if (loading) return <h1>Loading...</h1>;
         return (
         <>
+            <Controls cartoonName={cartoonName} />
             <CartoonList cartoons={cartoons} />
         </>
         );
