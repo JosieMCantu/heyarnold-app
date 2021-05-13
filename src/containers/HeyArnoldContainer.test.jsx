@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import HeyArnoldContainer from './HeyArnoldContainer';
 
@@ -18,6 +18,11 @@ describe('hey arnold container', () => {
 
         const button = await screen.findByRole('button', {name: 'search'});
         userEvent.click(button);
+
+        return waitFor(() => {
+            const cartoons = screen.getByText('Mitzi', {exact: false});
+            expect(cartoons).not.toBeEmptyDOMElement();
+        })
 
     });
 });
